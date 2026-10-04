@@ -20,7 +20,7 @@ from PIL import Image
 
 IMAGE_SIZE = 16
 OBJECTS = ["heart", "face", "robot", "tree", "spaceship"]
-IMAGES_PER_OBJECT = 1000
+IMAGES_PER_OBJECT = 2000
 ROOT = Path("pixel_dataset")
 IMAGE_DIR = ROOT / "images"
 IMAGE_DIR.mkdir(parents=True, exist_ok=True)
