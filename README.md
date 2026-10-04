@@ -16,6 +16,15 @@ The model knows only five words:
 
 There are no colors and no sizes. This keeps the code and the conceptual story as direct as possible.
 
+
+## Version 2: CNN-VAE for better generation
+
+Students who already know CNNs can use the improved CNN-VAE notebook:
+
+[![Open V2 In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dujing82-blip/tiny-black-white-generative-ai/blob/main/V2_CNN_VAE_Better_Generation.ipynb)
+
+V2 keeps the same VAE concept but uses a convolutional encoder and decoder, 10,000 training images, an 8-dimensional latent space, Binary Crossentropy reconstruction loss, and a smaller KL weight for more recognizable pixel art.
+
 ## Why this version exists
 
 This repository is designed for a first hands-on lesson in generative AI. It deliberately removes most of the complexity found in real text-to-image systems so students can see three ideas clearly:
@@ -78,7 +87,8 @@ tiny-black-white-generative-ai/
 ├── LICENSE
 ├── .gitignore
 ├── generate_dataset.py
-└── Tiny_Black_White_Generative_AI.ipynb
+├── Tiny_Black_White_Generative_AI.ipynb
+└── V2_CNN_VAE_Better_Generation.ipynb
 ```
 
 ## Important limitation
