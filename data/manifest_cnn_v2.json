@@ -1,0 +1,23 @@
+{
+  "file": "icons_cnn_v2.npz",
+  "sha256": "f5efcac36774ebced04128dc85d297cca9fc11b5469b2baa9be459c00b834006",
+  "image_count": 10000,
+  "image_shape": [
+    16,
+    16
+  ],
+  "pixel_values": [
+    0,
+    255
+  ],
+  "words": [
+    "heart",
+    "face",
+    "robot",
+    "tree",
+    "spaceship"
+  ],
+  "examples_per_word": 2000,
+  "source": "generate_dataset_v2.py",
+  "seed": "200000 + image index"
+}
