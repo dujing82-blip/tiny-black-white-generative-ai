@@ -1,0 +1,23 @@
+{
+  "file": "icons_16x16.npz",
+  "sha256": "b3dc1a0b89c04a651b90de4f4f2cda78fa75c70befbc1e54ccc47ede87d40f52",
+  "image_count": 10000,
+  "image_shape": [
+    16,
+    16
+  ],
+  "pixel_values": [
+    0,
+    255
+  ],
+  "words": [
+    "heart",
+    "face",
+    "robot",
+    "tree",
+    "spaceship"
+  ],
+  "examples_per_word": 2000,
+  "source": "generate_dataset.py",
+  "seed": "100000 + image index"
+}

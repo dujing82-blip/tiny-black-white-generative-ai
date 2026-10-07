@@ -35,17 +35,21 @@ This repository is designed for a first hands-on lesson in generative AI. It del
 
 ## Dataset
 
-The included generator creates **5,000** 16×16 grayscale images:
+Both notebooks download the pre-generated dataset [`data/icons_16x16.npz`](data/icons_16x16.npz) directly from GitHub. **No dataset generator runs during a Colab lesson.** The download is about 47 KB and is reused when its checksum matches.
 
-- 1,000 hearts
-- 1,000 faces
-- 1,000 robots
-- 1,000 trees
-- 1,000 spaceships
+The fixed dataset contains **10,000** 16×16 black-and-white images:
 
-Although the images are black and white, examples within each class vary in position and shape. For example, robot dimensions and antenna length vary; faces vary in radius and eye spacing; trees vary in canopy width; and spaceships vary in body and flame geometry.
+- 2,000 hearts
+- 2,000 faces
+- 2,000 robots
+- 2,000 trees
+- 2,000 spaceships
 
-The dataset is generated automatically inside Colab. Students do not need to download or upload data.
+Examples within each class vary in position and shape. The data is identical to the original CNN notebook's `generate_dataset.py` output, with the same deterministic seeds and label order.
+
+The archive contains `images` (uint8, shape `(10000, 16, 16)`, pixels 0 or 255), `labels` (int32, shape `(10000,)`), and `words` (the five condition words in label order). The notebooks normalize pixels to 0–1; the CNN notebook adds one channel dimension.
+
+Dataset provenance and SHA256 are recorded in [`data/manifest.json`](data/manifest.json). For maintainers only, `python build_precomputed_dataset.py` rebuilds the archive using NumPy and Pillow. Students simply run the download and training cells. If the archive changes, update the checksum in both notebooks.
 
 ## Model
 
@@ -85,8 +89,12 @@ The notebook contains detailed comments intended to be read by students. No pret
 tiny-black-white-generative-ai/
 ├── README.md
 ├── LICENSE
-├── .gitignore
+├── data/
+│   ├── icons_16x16.npz
+│   └── manifest.json
+├── build_precomputed_dataset.py
 ├── generate_dataset.py
+├── generate_dataset_v2.py
 ├── Tiny_Black_White_Generative_AI.ipynb
 └── V2_CNN_VAE_Better_Generation.ipynb
 ```
@@ -100,3 +108,4 @@ That limitation is intentional. The goal is to make the basic mechanism visible 
 ## License
 
 MIT License. Code and the procedurally generated teaching data may be reused for educational purposes.
+
