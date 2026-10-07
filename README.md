@@ -25,6 +25,16 @@ Students who already know CNNs can use the improved CNN-VAE notebook:
 
 V2 keeps the same VAE concept but uses a convolutional encoder and decoder, 10,000 training images, an 8-dimensional latent space, Binary Crossentropy reconstruction loss, and a smaller KL weight for more recognizable pixel art.
 
+## Pure VAE: generate an icon from two numbers
+
+[![Open Pure VAE In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/dujing82-blip/tiny-black-white-generative-ai/blob/main/Pure_VAE_2D_Icon_Generator.ipynb)
+
+This separate CNN VAE has **no word input or embeddings**. Its encoder receives only an image, and its decoder receives only two latent coordinates, `z1` and `z2`. It uses the same pre-generated dataset, a two-dimensional latent space, and reconstruction plus KL loss.
+
+After training, students type two values or sample a random point to generate an icon. An interactive generator, a tiled latent-plane map, and an optional encoder-mean scatter plot make the two-dimensional space visible. Class labels are used only to color that final plot; they never enter training.
+
+The manually entered decoder inputs are **z1 and z2**. The encoder's **mu1 and mu2** are image-specific means; decoding at `z = mu` reconstructs an existing image at its mean. Without a word condition, the latent coordinates represent both class and variation, and some positions can produce mixed or unclear icons.
+
 ## Why this version exists
 
 This repository is designed for a first hands-on lesson in generative AI. It deliberately removes most of the complexity found in real text-to-image systems so students can see three ideas clearly:
@@ -35,7 +45,7 @@ This repository is designed for a first hands-on lesson in generative AI. It del
 
 ## Dataset
 
-Both notebooks download the pre-generated dataset [`data/icons_16x16.npz`](data/icons_16x16.npz) directly from GitHub. **No dataset generator runs during a Colab lesson.** The download is about 47 KB and is reused when its checksum matches.
+All three notebooks download the pre-generated dataset [`data/icons_16x16.npz`](data/icons_16x16.npz) directly from GitHub. **No dataset generator runs during a Colab lesson.** The download is about 47 KB and is reused when its checksum matches.
 
 The fixed dataset contains **10,000** 16×16 black-and-white images:
 
@@ -49,7 +59,7 @@ Examples within each class vary in position and shape. The data is identical to 
 
 The archive contains `images` (uint8, shape `(10000, 16, 16)`, pixels 0 or 255), `labels` (int32, shape `(10000,)`), and `words` (the five condition words in label order). The notebooks normalize pixels to 0–1; the CNN notebook adds one channel dimension.
 
-Dataset provenance and SHA256 are recorded in [`data/manifest.json`](data/manifest.json). For maintainers only, `python build_precomputed_dataset.py` rebuilds the archive using NumPy and Pillow. Students simply run the download and training cells. If the archive changes, update the checksum in both notebooks.
+Dataset provenance and SHA256 are recorded in [`data/manifest.json`](data/manifest.json). For maintainers only, `python build_precomputed_dataset.py` rebuilds the archive using NumPy and Pillow. Students simply run the download and training cells. If the archive changes, update the checksum in all three notebooks.
 
 ## Model
 
@@ -96,12 +106,13 @@ tiny-black-white-generative-ai/
 ├── generate_dataset.py
 ├── generate_dataset_v2.py
 ├── Tiny_Black_White_Generative_AI.ipynb
-└── V2_CNN_VAE_Better_Generation.ipynb
+├── V2_CNN_VAE_Better_Generation.ipynb
+└── Pure_VAE_2D_Icon_Generator.ipynb
 ```
 
 ## Important limitation
 
-This is not a language model. It recognizes only five predefined words.
+This is not a language model. The conditional versions recognize only five predefined words. The pure VAE uses no words and learns from the same five icon families.
 
 That limitation is intentional. The goal is to make the basic mechanism visible before introducing tokenization, Transformers, diffusion models, or large text encoders.
 
